@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# AUXILIUM — abre o instalador local.
+set -u
+
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$HERE" || exit 1
+export PYTHONUNBUFFERED=1
+
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "Python 3 não encontrado. Instale o Python 3 para continuar." >&2
+  exit 1
+fi
+
+exec python3 "$HERE/installer.py" "$@"
